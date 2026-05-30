@@ -79,7 +79,7 @@ export default function TrackTransfer() {
               <path d="M10 3v10M10 3L6 7M10 3l4 4" />
               <path d="M3 17h14" />
             </svg>
-            أنا الفرسل
+            أنا المرسل
           </button>
           <button
             onClick={() => setActiveTab("receiver")}
