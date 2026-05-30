@@ -184,7 +184,7 @@ export default function TrackTransfer() {
 
           {/* Red error message after submit */}
           {showError && (
-            <p className="font-bold text-sm leading-snug" style={{ color: "#c0392b" }}>
+            <p className="font-bold text-sm whitespace-nowrap overflow-hidden text-ellipsis" style={{ color: "#c0392b" }}>
               We can't find that transfer. Please check and re-enter the information below.
             </p>
           )}
