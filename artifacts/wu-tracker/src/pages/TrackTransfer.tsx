@@ -35,24 +35,7 @@ export default function TrackTransfer() {
     <div dir="rtl" className="min-h-screen flex flex-col bg-white font-arabic">
       {/* Header */}
       <header className="bg-wu-dark px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <button className="text-gray-300 p-1">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <circle cx="5" cy="10" r="1.5" />
-              <circle cx="10" cy="10" r="1.5" />
-              <circle cx="15" cy="10" r="1.5" />
-            </svg>
-          </button>
-          <div className="bg-gray-700 text-white text-sm px-2 py-1 rounded flex items-center gap-1">
-            <span>25</span>
-          </div>
-          <button className="text-gray-300 p-1">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="3" y1="10" x2="17" y2="10" />
-              <path d="M11 4l6 6-6 6" />
-            </svg>
-          </button>
-        </div>
+        <div className="w-16"></div>
 
         {/* WU Logo */}
         <div className="flex-1 flex justify-center">
