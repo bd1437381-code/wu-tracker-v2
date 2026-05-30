@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const footerLinks = [
   "الصفحة الرئيسية",
@@ -23,12 +23,22 @@ export default function TrackTransfer() {
   const [activeTab, setActiveTab] = useState<"sender" | "receiver">("sender");
   const [mtcn, setMtcn] = useState(["", "", "", "", "", "", "", "", "", ""]);
   const [firstName, setFirstName] = useState("");
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleMtcnChange = (index: number, value: string) => {
-    const digits = value.replace(/\D/g, "");
+    const digit = value.replace(/\D/g, "").slice(-1);
     const next = [...mtcn];
-    next[index] = digits.slice(-1);
+    next[index] = digit;
     setMtcn(next);
+    if (digit && index < 9) {
+      inputRefs.current[index + 1]?.focus();
+    }
+  };
+
+  const handleMtcnKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && !mtcn[index] && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
   };
 
   return (
@@ -107,11 +117,13 @@ export default function TrackTransfer() {
               {mtcn.map((digit, i) => (
                 <input
                   key={i}
+                  ref={(el) => { inputRefs.current[i] = el; }}
                   type="text"
                   inputMode="numeric"
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleMtcnChange(i, e.target.value)}
+                  onKeyDown={(e) => handleMtcnKeyDown(i, e)}
                   className="w-8 h-8 border-b-2 border-gray-300 text-center text-lg focus:outline-none focus:border-gray-700 bg-transparent"
                 />
               ))}
@@ -149,11 +161,13 @@ export default function TrackTransfer() {
               {mtcn.map((digit, i) => (
                 <input
                   key={i}
+                  ref={(el) => { inputRefs.current[i] = el; }}
                   type="text"
                   inputMode="numeric"
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleMtcnChange(i, e.target.value)}
+                  onKeyDown={(e) => handleMtcnKeyDown(i, e)}
                   className="w-8 h-8 border-b-2 border-gray-300 text-center text-lg focus:outline-none focus:border-gray-700 bg-transparent"
                 />
               ))}
