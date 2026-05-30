@@ -121,7 +121,7 @@ export default function TrackTransfer() {
             <div>
               <input
                 type="text"
-                placeholder="الاسم الأول للفرسل"
+                placeholder="الاسم الأول للمرسل"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 className="w-full border-b border-gray-300 py-2 text-sm focus:outline-none focus:border-gray-700 bg-transparent placeholder-gray-400 text-right"
