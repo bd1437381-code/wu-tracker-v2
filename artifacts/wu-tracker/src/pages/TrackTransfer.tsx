@@ -56,15 +56,10 @@ export default function TrackTransfer() {
 
         {/* WU Logo */}
         <div className="flex-1 flex justify-center">
-          <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
-            <path
-              d="M2 4L10 24L16 8L20 20L24 8L30 24L38 4"
-              stroke="#FFCC00"
-              strokeWidth="5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
+          <svg width="52" height="34" viewBox="0 0 52 34" fill="#FFCC00" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M0,0 L6,0 L13,22 L20,6 L26,6 L32,22 L39,0 L46,0 L36,34 L28,34 L26,28 L24,34 L16,34 Z
+            "/>
           </svg>
         </div>
 
