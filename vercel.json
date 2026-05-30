@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/wu-tracker run build",
-  "outputDirectory": "artifacts/wu-tracker/dist",
+  "outputDirectory": "dist-vercel",
   "installCommand": "pnpm install",
   "framework": null
 }
