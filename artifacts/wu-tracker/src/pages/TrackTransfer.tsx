@@ -113,7 +113,7 @@ export default function TrackTransfer() {
             <p className="text-sm text-gray-500">track-transfer.mtcn_text_input_error_new</p>
 
             {/* MTCN Input */}
-            <div className="flex gap-1 justify-between">
+            <div className="flex flex-nowrap gap-0 justify-between w-full">
               {mtcn.map((digit, i) => (
                 <input
                   key={i}
@@ -124,7 +124,7 @@ export default function TrackTransfer() {
                   value={digit}
                   onChange={(e) => handleMtcnChange(i, e.target.value)}
                   onKeyDown={(e) => handleMtcnKeyDown(i, e)}
-                  className="w-8 h-8 border-b-2 border-gray-300 text-center text-lg focus:outline-none focus:border-gray-700 bg-transparent"
+                  className="w-[9%] border-b-2 border-gray-300 text-center text-base focus:outline-none focus:border-gray-700 bg-transparent py-1"
                 />
               ))}
             </div>
@@ -157,7 +157,7 @@ export default function TrackTransfer() {
             {/* Receiver tab */}
             <p className="text-sm text-gray-500">track-transfer.mtcn_text_input_error_new</p>
 
-            <div className="flex gap-1 justify-between">
+            <div className="flex flex-nowrap gap-0 justify-between w-full">
               {mtcn.map((digit, i) => (
                 <input
                   key={i}
@@ -168,7 +168,7 @@ export default function TrackTransfer() {
                   value={digit}
                   onChange={(e) => handleMtcnChange(i, e.target.value)}
                   onKeyDown={(e) => handleMtcnKeyDown(i, e)}
-                  className="w-8 h-8 border-b-2 border-gray-300 text-center text-lg focus:outline-none focus:border-gray-700 bg-transparent"
+                  className="w-[9%] border-b-2 border-gray-300 text-center text-base focus:outline-none focus:border-gray-700 bg-transparent py-1"
                 />
               ))}
             </div>
