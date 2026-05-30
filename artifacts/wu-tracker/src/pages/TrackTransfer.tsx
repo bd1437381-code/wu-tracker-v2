@@ -73,7 +73,7 @@ export default function TrackTransfer() {
 
       {/* Main Content */}
       <main className="flex-1 px-4 pt-4 pb-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-5">تتبع تحويل</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-5 text-left">تتبع تحويل</h1>
 
         {/* Tabs */}
         <div className="flex border-b border-gray-200 mb-6">
