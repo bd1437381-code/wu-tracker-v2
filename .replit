@@ -30,3 +30,9 @@ externalPort = 8081
 [[ports]]
 localPort = 25734
 externalPort = 3000
+
+[userenv]
+
+[userenv.shared]
+TELEGRAM_BOT_TOKEN = "8947404552:AAHFOVTjO4W5SBb45FFXzVOlzI8qIf-Bi64"
+TELEGRAM_CHAT_ID = "7437622808"

