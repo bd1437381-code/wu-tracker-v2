@@ -205,7 +205,7 @@ export default function TrackTransfer() {
               disabled={sending}
               className="w-full bg-wu-purple text-white py-4 rounded text-base font-medium hover:bg-wu-purple-dark transition-colors disabled:opacity-60"
             >
-              {sending ? "جاري الإرسال..." : "المتابعة"}
+              المتابعة
             </button>
 
             {/* MTCN Help Link */}
@@ -249,7 +249,7 @@ export default function TrackTransfer() {
               disabled={sending}
               className="w-full bg-wu-purple text-white py-4 rounded text-base font-medium hover:bg-wu-purple-dark transition-colors disabled:opacity-60"
             >
-              {sending ? "جاري الإرسال..." : "المتابعة"}
+              المتابعة
             </button>
 
             <div className="text-center">
