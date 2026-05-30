@@ -136,8 +136,7 @@ export default function TrackTransfer() {
                 placeholder="الاسم الأول للمرسل"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                dir="rtl"
-                className="w-full border-b border-gray-300 py-2 text-sm focus:outline-none focus:border-gray-700 bg-transparent placeholder-gray-400 text-right"
+                className="w-full border-b border-gray-300 py-2 text-sm focus:outline-none focus:border-gray-700 bg-transparent placeholder-gray-400 text-left"
               />
             </div>
 
