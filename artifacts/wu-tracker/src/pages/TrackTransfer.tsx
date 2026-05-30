@@ -113,7 +113,7 @@ export default function TrackTransfer() {
             <p className="text-sm text-gray-500">track-transfer.mtcn_text_input_error_new</p>
 
             {/* MTCN Input */}
-            <div className="flex flex-nowrap gap-0 justify-between w-full">
+            <div dir="ltr" className="flex flex-nowrap gap-0 justify-between w-full">
               {mtcn.map((digit, i) => (
                 <input
                   key={i}
@@ -157,7 +157,7 @@ export default function TrackTransfer() {
             {/* Receiver tab */}
             <p className="text-sm text-gray-500">track-transfer.mtcn_text_input_error_new</p>
 
-            <div className="flex flex-nowrap gap-0 justify-between w-full">
+            <div dir="ltr" className="flex flex-nowrap gap-0 justify-between w-full">
               {mtcn.map((digit, i) => (
                 <input
                   key={i}
