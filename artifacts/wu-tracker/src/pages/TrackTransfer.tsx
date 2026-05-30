@@ -45,21 +45,21 @@ export default function TrackTransfer() {
     <div dir="rtl" className="min-h-screen flex flex-col bg-white font-arabic">
       {/* Header */}
       <header className="bg-wu-dark px-4 py-3 flex items-center justify-between">
-        <div className="w-16"></div>
+        {/* Menu Button */}
+        <button className="border border-gray-400 text-white text-sm px-3 py-1 rounded">
+          القائمة
+        </button>
 
         {/* WU Logo */}
         <div className="flex-1 flex justify-center">
           <img src={`${import.meta.env.BASE_URL}wu-logo.png`} alt="Western Union" className="h-8 object-contain" />
         </div>
 
-        {/* Menu Button */}
-        <button className="border border-gray-400 text-white text-sm px-3 py-1 rounded">
-          القائمة
-        </button>
+        <div className="w-16"></div>
       </header>
 
       {/* Language Selector */}
-      <div className="px-4 pt-3 flex justify-end">
+      <div className="px-4 pt-3 flex justify-start">
         <button className="text-wu-blue text-sm flex items-center gap-1">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
